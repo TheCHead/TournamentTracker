@@ -1,0 +1,9 @@
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\bin\Debug\TrackerLibrary.dll
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\bin\Debug\TrackerLibrary.pdb
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\obj\Debug\TrackerLibrary.csprojAssemblyReference.cache
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\obj\Debug\TrackerLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\obj\Debug\TrackerLibrary.dll
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\obj\Debug\TrackerLibrary.pdb
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\bin\Debug\Dapper.dll
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\bin\Debug\Dapper.xml
+C:\Users\Nikita Dmitriev\CSharpStudy\Demos\TournamentTracker\TrackerLibrary\obj\Debug\TrackerLibrary.csproj.CopyComplete
