@@ -1,6 +1,6 @@
 ﻿namespace TrackerUI
 {
-    partial class tournamentViewer
+    partial class TournamentViewerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,21 @@
             scoreButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // scoreButton
+            // 
+            scoreButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            scoreButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            scoreButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            scoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            scoreButton.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            scoreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            scoreButton.Location = new System.Drawing.Point(698, 333);
+            scoreButton.Name = "scoreButton";
+            scoreButton.Size = new System.Drawing.Size(128, 57);
+            scoreButton.TabIndex = 14;
+            scoreButton.Text = "Score";
+            scoreButton.UseVisualStyleBackColor = true;
+            // 
             // headerLabel
             // 
             this.headerLabel.AutoSize = true;
@@ -75,7 +90,6 @@
             this.roundLabel.Size = new System.Drawing.Size(97, 38);
             this.roundLabel.TabIndex = 2;
             this.roundLabel.Text = "Round";
-            this.roundLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // roundDropdown
             // 
@@ -84,6 +98,7 @@
             this.roundDropdown.Name = "roundDropdown";
             this.roundDropdown.Size = new System.Drawing.Size(217, 45);
             this.roundDropdown.TabIndex = 3;
+            this.roundDropdown.SelectedIndexChanged += new System.EventHandler(this.roundDropdown_SelectedIndexChanged);
             // 
             // unplayedOnlyCheckbox
             // 
@@ -94,7 +109,6 @@
             this.unplayedOnlyCheckbox.TabIndex = 4;
             this.unplayedOnlyCheckbox.Text = "Unplayed only";
             this.unplayedOnlyCheckbox.UseVisualStyleBackColor = true;
-            this.unplayedOnlyCheckbox.CheckedChanged += new System.EventHandler(this.unplayedOnlyCheckbox_CheckedChanged);
             // 
             // matchupListBox
             // 
@@ -105,6 +119,7 @@
             this.matchupListBox.Name = "matchupListBox";
             this.matchupListBox.Size = new System.Drawing.Size(313, 261);
             this.matchupListBox.TabIndex = 5;
+            this.matchupListBox.SelectedIndexChanged += new System.EventHandler(this.matchupListBox_SelectedIndexChanged);
             // 
             // teamOneName
             // 
@@ -130,7 +145,6 @@
             this.teamOneScoreValue.Name = "teamOneScoreValue";
             this.teamOneScoreValue.Size = new System.Drawing.Size(100, 43);
             this.teamOneScoreValue.TabIndex = 9;
-            this.teamOneScoreValue.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // teamTwoScoreValue
             // 
@@ -166,22 +180,7 @@
             this.versusLabel.TabIndex = 13;
             this.versusLabel.Text = "-VS-";
             // 
-            // scoreButton
-            // 
-            scoreButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            scoreButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            scoreButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            scoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            scoreButton.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            scoreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
-            scoreButton.Location = new System.Drawing.Point(698, 333);
-            scoreButton.Name = "scoreButton";
-            scoreButton.Size = new System.Drawing.Size(128, 57);
-            scoreButton.TabIndex = 14;
-            scoreButton.Text = "Score";
-            scoreButton.UseVisualStyleBackColor = true;
-            // 
-            // tournamentViewer
+            // TournamentViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -203,7 +202,7 @@
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.Name = "tournamentViewer";
+            this.Name = "TournamentViewerForm";
             this.Text = "Tournament Viewer";
             this.ResumeLayout(false);
             this.PerformLayout();
