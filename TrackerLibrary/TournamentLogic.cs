@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,112 @@ namespace TrackerLibrary
             model.Rounds.Add(CreateFirstRound(byes, randomizedTeams));
 
             CreateOtherRounds(model, rounds);
+
+        }
+
+        public static void UpdateTournamentResults(TournamentModel tournament)
+        {
+            List<MatchupModel> toScore = new List<MatchupModel>();
+
+            foreach (List<MatchupModel> round in tournament.Rounds)
+            {
+                foreach (MatchupModel rm in round)
+                {
+                    if (rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
+                    {
+                        toScore.Add(rm);
+                    }
+                }
+            }
+
+            MarkWinnersInMatchup(toScore);
+
+            AdvanceWinners(toScore, tournament);
+
+            toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+
+        }
+
+        private static void MarkWinnersInMatchup(List<MatchupModel> matchups)
+        {
+            //greater or lesser 
+            string greaterWins = ConfigurationManager.AppSettings["greaterWins"];
+
+            foreach (MatchupModel m in matchups)
+            {
+                // for bye week entry
+                if (m.Entries.Count == 1)
+                {
+                    m.Winner = m.Entries[0].TeamCompeting;
+                    continue;
+                }
+
+                // 0 means low score wins
+                if (greaterWins == "0")
+                {
+                    if (m.Entries[0].Score <m.Entries[1].Score)
+                    {
+                        m.Winner = m.Entries[0].TeamCompeting;
+                    }
+
+                    else if (m.Entries[1].Score < m.Entries[0].Score)
+                    {
+                        m.Winner = m.Entries[1].TeamCompeting;
+                    }
+
+                    else
+                    {
+                        throw new Exception("Ties are not allowed.");
+                    }
+                }
+                
+                else
+                {
+                    // 1 means high score wins
+                    if (m.Entries[0].Score > m.Entries[1].Score)
+                    {
+                        m.Winner = m.Entries[0].TeamCompeting;
+                    }
+
+                    else if (m.Entries[1].Score > m.Entries[0].Score)
+                    {
+                        m.Winner = m.Entries[1].TeamCompeting;
+                    }
+
+                    else
+                    {
+                        throw new Exception("Ties are not allowed.");
+                    }
+                }
+            }
+
+        }
+
+        private static void AdvanceWinners(List<MatchupModel> matchups, TournamentModel tournament)
+        {
+
+            foreach (MatchupModel m in matchups)
+            {
+                //make entry move to the next round after the win
+                foreach (List<MatchupModel> round in tournament.Rounds)
+                {
+                    foreach (MatchupModel rm in round)
+                    {
+                        foreach (MatchupEntryModel mem in rm.Entries)
+                        {
+                            if (mem.ParentMatchup != null)
+                            {
+                                if (mem.ParentMatchup.Id == m.Id)
+                                {
+                                    mem.TeamCompeting = m.Winner;
+                                    GlobalConfig.Connection.UpdateMatchup(rm);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         private static void CreateOtherRounds(TournamentModel model, int rounds)
@@ -106,7 +213,6 @@ namespace TrackerLibrary
 
             return output;
         }
-
 
         private static List<TeamModel> RandomizeTeamOrder(List<TeamModel> teams)
         {
