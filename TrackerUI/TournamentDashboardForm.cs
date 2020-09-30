@@ -15,6 +15,7 @@ namespace TrackerUI
     public partial class TournamentDashboardForm : Form
     {
         List<TournamentModel> tournaments = GlobalConfig.Connection.GetTournament_All();
+        
 
         public TournamentDashboardForm()
         {
@@ -38,8 +39,22 @@ namespace TrackerUI
         private void loadTournamentButton_Click(object sender, EventArgs e)
         {
             TournamentModel tm = (TournamentModel)existingTournamentsDropdown.SelectedItem;
+            tm.OnTournamentComplete += Tm_OnTournamentComplete;
+
             TournamentViewerForm frm = new TournamentViewerForm(tm);
             frm.Show();
+        }
+
+        private void Tm_OnTournamentComplete(object sender, DateTime e)
+        {
+            RewireTournamentList();
+        }
+
+        private void RewireTournamentList()
+        {
+            tournaments = GlobalConfig.Connection.GetTournament_All();
+            existingTournamentsDropdown.DataSource = tournaments;
+            existingTournamentsDropdown.DisplayMember = "TournamentName";
         }
     }
 }
