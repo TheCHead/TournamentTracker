@@ -183,9 +183,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 {
                     string[] prizeIds = cols[4].Split('|');
 
-                    foreach (string id in teamIds)
+                    foreach (string id in prizeIds)
                     {
+
                         tm.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
+
                     } 
                 }
 

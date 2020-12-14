@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -32,6 +33,10 @@ namespace TrackerUI
 
         private void createNewTournamentLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (!System.IO.Directory.Exists($"{ConfigurationManager.AppSettings["filePath"]}"))
+            {
+                System.IO.Directory.CreateDirectory($"{ConfigurationManager.AppSettings["filePath"]}");
+            }
             CreateTournamentForm frm = new CreateTournamentForm();
             frm.Show();
         }
@@ -39,6 +44,8 @@ namespace TrackerUI
         private void loadTournamentButton_Click(object sender, EventArgs e)
         {
             TournamentModel tm = (TournamentModel)existingTournamentsDropdown.SelectedItem;
+            if (tm == null) return;
+
             tm.OnTournamentComplete += Tm_OnTournamentComplete;
 
             TournamentViewerForm frm = new TournamentViewerForm(tm);
