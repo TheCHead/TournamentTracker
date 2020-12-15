@@ -47,6 +47,7 @@
             this.firstNameValue = new System.Windows.Forms.TextBox();
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.teamMembersListBox = new System.Windows.Forms.ListBox();
+            this.teamMemberListLabel = new System.Windows.Forms.Label();
             addTeamMemberButton = new System.Windows.Forms.Button();
             createMemberButton = new System.Windows.Forms.Button();
             createTeamButton = new System.Windows.Forms.Button();
@@ -260,12 +261,23 @@
             this.teamMembersListBox.Size = new System.Drawing.Size(313, 298);
             this.teamMembersListBox.TabIndex = 22;
             // 
+            // teamMemberListLabel
+            // 
+            this.teamMemberListLabel.AutoSize = true;
+            this.teamMemberListLabel.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamMemberListLabel.Location = new System.Drawing.Point(532, 87);
+            this.teamMemberListLabel.Name = "teamMemberListLabel";
+            this.teamMemberListLabel.Size = new System.Drawing.Size(207, 38);
+            this.teamMemberListLabel.TabIndex = 28;
+            this.teamMemberListLabel.Text = "Team Members";
+            // 
             // CreateTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(897, 674);
+            this.Controls.Add(this.teamMemberListLabel);
             this.Controls.Add(removeSelectedButton);
             this.Controls.Add(createTeamButton);
             this.Controls.Add(this.teamMembersListBox);
@@ -304,5 +316,6 @@
         private System.Windows.Forms.TextBox emailValue;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.ListBox teamMembersListBox;
+        private System.Windows.Forms.Label teamMemberListLabel;
     }
 }

@@ -117,9 +117,18 @@ namespace TrackerLibrary.DataAccess
         public void CompleteTournament(TournamentModel model)
         {
             List<TournamentModel> tournaments = GlobalConfig.TournamentsFile.FullFilePath().LoadFile().ConvertToTournamentModels();
+
+            List<TournamentModel> tournamentsToSave = new List<TournamentModel>();
+            foreach (TournamentModel tm in tournaments)
+            {
+                if (tm.Id != model.Id)
+                {
+                    tournamentsToSave.Add(tm);
+                }
+            }
             
-            tournaments.Remove(model);
-            tournaments.SaveToTournamentFile();
+            //tournaments.Remove(model);
+            tournamentsToSave.SaveToTournamentFile();
 
             //TournamentLogic.UpdateTournamentResults(model);
         }
