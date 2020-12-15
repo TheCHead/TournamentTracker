@@ -120,6 +120,12 @@ namespace TrackerUI
 
         private void createTeamButton_Click(object sender, EventArgs e)
         {
+            if (!IsTeamValid())
+            {
+                MessageBox.Show("Entered data not valid.", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TeamModel t = new TeamModel();
             t.TeamName = teamNameValue.Text;
             t.TeamMembers = selectedTeamMembers;
@@ -129,6 +135,16 @@ namespace TrackerUI
             callingForm.TeamComplete(t);
             this.Close();
 
+        }
+
+        private bool IsTeamValid()
+        {
+            if (teamNameValue.Text.Length == 0 || selectedTeamMembers.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

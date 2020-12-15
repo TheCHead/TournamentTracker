@@ -115,6 +115,12 @@ namespace TrackerUI
                 return;
             }
 
+            if (!IsTournamentValid())
+            {
+                MessageBox.Show("Entered data not valid.", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Create tournament instance
             TournamentModel tm = new TournamentModel();
             tm.TournamentName = tournamentNameValue.Text;
@@ -133,6 +139,16 @@ namespace TrackerUI
             TournamentViewerForm frm = new TournamentViewerForm(tm);
             frm.Show();
             this.Close();
+        }
+
+        private bool IsTournamentValid()
+        {
+            if (tournamentNameValue.Text.Length == 0 || selectedTeams.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
