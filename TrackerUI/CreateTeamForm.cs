@@ -65,6 +65,21 @@ namespace TrackerUI
             {
                 MessageBox.Show("Please fill all of the fields");
             }
+
+        }
+
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private bool ValidateForm()
@@ -79,8 +94,9 @@ namespace TrackerUI
                 return false;
             }
 
-            if (emailValue.Text.Length == 0)
+            if (!IsValidEmail(emailValue.Text))
             {
+                MessageBox.Show("Invalid email");
                 return false;
             }
 
